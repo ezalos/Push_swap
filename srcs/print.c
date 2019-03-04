@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 15:27:51 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/12 21:39:28 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/04 22:37:34 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 int			print_push_swap(t_push_swap *push)
 {
 	int		good_a;
+	int		now_a;
 	int		good_b;
+	int		now_b;
 	size_t	i;
+	t_tab	*tmpa;
+	t_tab	*tmpb;
 
 	i = -1;
 	CLEAR_SCREEN
@@ -45,46 +49,49 @@ int			print_push_swap(t_push_swap *push)
 	ft_putnbr(push->size_b);
 	C_RESET
 	ft_putstr("\n");
+	//ft_putstr("BONJOUR PBM ?");
+	tmpa = (push->stack_a);
+	tmpb = (push->stack_b);
+	//ft_putstr("BONJOUR PBM !");
+
 	while (++i < push->all && (i < push->size_a || i < push->size_b))
 	{
 		ft_putstr("\n");
 		ft_putstr("\t\t\t");
 		if (i < push->size_a)
 		{
+			now_a = *(int*)ft_tab_dirth(push->stack_a, 0, i)->content;
 			if (i > 0)
 			{
-				if (push->stack_a[i] > good_a)
+				if (now_a > good_a)
 					C_GREEN
-				else if (push->stack_a[i] == good_a)
+				else if (now_a == good_a)
 					C_ORANGE
 				else
 					C_RED
 			}
 			else
 				C_CYAN
-			good_a = push->stack_a[i];
-			//if ((push->stack_a[i] == 0 && push->size_a == i) || (push->stack_a[i] == 0 && push->stack_a[i + 1] == 0))
-			//	C_BLUE
-			ft_putnbr(push->stack_a[i]);
+			good_a = now_a;
+			ft_putnbr(good_a);
 		}
 		ft_putstr("\t\t");
 		if (i < push->size_b)
 		{
+			now_b = *(int*)ft_tab_dirth(push->stack_b, 0, i)->content;
 			if (i > 0)
 			{
-				if (push->stack_b[i] > good_b)
+				if (now_b > good_b)
 					C_GREEN
-				else if (push->stack_b[i] == good_b)
+				else if (now_b == good_b)
 					C_ORANGE
 				else
 					C_RED
 			}
 			else
 				C_CYAN
-			good_b = push->stack_b[i];
-			//if ((push->stack_b[i] == 0 && push->size_b == i) || (push->stack_b[i] == 0 && push->stack_b[i + 1] == 0))
-			//	C_BLUE
-			ft_putnbr(push->stack_b[i]);
+			good_b = now_b;
+			ft_putnbr(good_b);
 		}
 	}
 	ft_putstr("\n");

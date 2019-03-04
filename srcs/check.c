@@ -6,24 +6,26 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 14:41:32 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/11 14:53:43 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/04 22:40:45 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/head.h"
 
-int		is_it_good(int **to_order, size_t size)
+int		is_it_good(t_push_swap *push)
 {
-	int		good;
 	size_t	i;
+	int		good;
+	t_tab	*tmp;
 
 	i = 0;
-	good = to_order[0][i];
-	while (++i < size)
+	tmp = push->stack_a;
+	while (++i < push->all)
 	{
-		if (to_order[0][i] <= good)
+		good = *(int*)tmp->content;
+		tmp = tmp->dir[0];
+		if (*(int*)tmp->content <= good)
 			return (0);
-		good = to_order[0][i];
 	}
 	return (1);
 }

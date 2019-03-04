@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 15:25:41 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/11 18:18:26 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/04 22:43:29 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,7 @@ int		execute_order_66(t_push_swap *push)
 		execute_push(push, 1);
 
 	else if (!ft_strcmp(push->instruction, "ra"))
-	{
-		//printf("PLOOOOOOOOO\n");
 		execute_rotation(push->stack_a, push->size_a, 0);
-	}
 	else if (!ft_strcmp(push->instruction, "rb"))
 		execute_rotation(push->stack_b, push->size_b, 0);
 	else if (!ft_strcmp(push->instruction, "rr"))
@@ -163,29 +160,20 @@ int		execute_order_66(t_push_swap *push)
 	return(1);
 }
 
-int		lets_play(int **to_order, size_t size)
+int		lets_play(t_push_swap *push)
 {
-	t_push_swap		push;
-
-	push.all = size;
-	push.stack_a = to_order[0];
-	push.size_a = size;
-	push.stack_b = to_order[1];
-	push.size_b = 0;
-	push.count = 0;
-	push.instruction = NULL;
-	print_push_swap(&push);
-	if (0 >= get_next_line(0, &push.instruction))
+	print_push_swap(push);
+	if (0 >= get_next_line(0, &push->instruction))
 		return (-1);
-	while (push.instruction[0] != '\0')
+	while (push->instruction[0] != '\0')
 	{
-		if (!(execute_order_66(&push)))
+		if (!(execute_order_66(push)))
 			return (-1);
-		push.count++;
-		print_push_swap(&push);
-		ft_strdel(&push.instruction);
-		if (0 >= get_next_line(0, &push.instruction))
+		push->count++;
+		print_push_swap(push);
+		ft_strdel(&push->instruction);
+		if (0 >= get_next_line(0, &push->instruction))
 			return (-1);
 	}
-	return (push.count);
+	return (push->count);
 }
