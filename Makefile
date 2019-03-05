@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/02/14 17:32:39 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/03/05 19:14:22 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -174,6 +174,8 @@ git :
 t	:	all
 		@./$(NAME) $(ARG)
 
+echooo :
+		@echo $(ARG)
 vt	:	all
 		@ $(VALGRIND) ./$(NAME) $(ARG)
 

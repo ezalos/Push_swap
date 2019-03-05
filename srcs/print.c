@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 15:27:51 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/04 22:37:34 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/05 20:32:05 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int			print_push_swap(t_push_swap *push)
 	int		now_a;
 	int		good_b;
 	int		now_b;
-	size_t	i;
+	size_t	in;
 	t_tab	*tmpa;
 	t_tab	*tmpb;
+	size_t	dir;
 
-	i = -1;
-	CLEAR_SCREEN
+	//CLEAR_SCREEN
 	place_cursor(0, 0);
 	//CURSOR_RESET
 	C_PURPLE
@@ -54,14 +54,16 @@ int			print_push_swap(t_push_swap *push)
 	tmpb = (push->stack_b);
 	//ft_putstr("BONJOUR PBM !");
 
-	while (++i < push->all && (i < push->size_a || i < push->size_b))
+	in = 0;
+	dir = 2;
+	while (in < push->all && (in < push->size_a || in < push->size_b))
 	{
 		ft_putstr("\n");
 		ft_putstr("\t\t\t");
-		if (i < push->size_a)
+		if (in < push->size_a)
 		{
-			now_a = *(int*)ft_tab_dirth(push->stack_a, 0, i)->content;
-			if (i > 0)
+			now_a = *(int*)ft_tab_dirth(push->stack_a, dir, in)->content;
+			if (in > 0)
 			{
 				if (now_a > good_a)
 					C_GREEN
@@ -76,10 +78,10 @@ int			print_push_swap(t_push_swap *push)
 			ft_putnbr(good_a);
 		}
 		ft_putstr("\t\t");
-		if (i < push->size_b)
+		if (in < push->size_b)
 		{
-			now_b = *(int*)ft_tab_dirth(push->stack_b, 0, i)->content;
-			if (i > 0)
+			now_b = *(int*)ft_tab_dirth(push->stack_b, dir, in)->content;
+			if (in > 0)
 			{
 				if (now_b > good_b)
 					C_GREEN
@@ -93,6 +95,7 @@ int			print_push_swap(t_push_swap *push)
 			good_b = now_b;
 			ft_putnbr(good_b);
 		}
+		in++;
 	}
 	ft_putstr("\n");
 	C_RESET

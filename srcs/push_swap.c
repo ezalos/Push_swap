@@ -6,99 +6,86 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 15:25:41 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/04 22:43:29 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/05 20:39:44 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/head.h"
 
-int		execute_swap(int *stack, size_t size)
+int		execute_rotation(t_tab **stack, size_t dir)
 {
-	int		swap;
+	t_tab	*tmp;
+	int		i = 25;
+	int		line;
 
-	if (size >= 2)
-	{
-		swap = stack[0];
-		stack[0] = stack[1];
-		stack[1] = swap;
-		return (1);
-	}
-	return (0);
-}
+	tmp = ft_tab_dirth(*stack, dir, 1);
 
-int		move_stack(int *stack, size_t size, int direction)
-{
-	size_t	i;
+	if (!stack || !*stack)
+		return (0);
+	//tmp = (*stack)->dir[dir];
+	line = 10;
+	if (dir)
+		line += ft_random(0, 8, (int)stack, (int)stack) * 4;
+	place_cursor(line, 0);
+	ft_rgb_color(-1, -1, -1);
+	ft_putendl(__func__);
+	ft_putstr("stack bef:\t");
+	ft_putnbr(*(int*)(*stack)->content);
+	ft_putendl("");
+	ft_putstr("next in dir:\t");
+	ft_putnbr(*(int*)tmp->content);
+	ft_putendl("");
 
-	if (direction)
-	{
-		i = size + 1;
-		while (--i)
-			stack[i] = stack[i - 1];
-		size++;
-		return (size - 1);
-	}
-	else
-	{
-		i = 0;
-		while (++i < size)
-			stack[i - 1] = stack[i];
-		size--;
-		return (-i);
-	}
-}
 
-int		execute_push(t_push_swap *push, int mode)
-{
-	int		r_val;
 
-	r_val =0;
-	if (mode == 0)
-	{
-		if (push->size_a < 1)
-			return (0);
-		move_stack(push->stack_b, push->size_b, 1);
-		push->stack_b[0] = push->stack_a[0];
-		move_stack(push->stack_a, push->size_a, 0);
-		push->size_a--;
-		push->size_b++;
-	}
-	if (mode == 1)
-	{
-		if (push->size_b < 1)
-			return (0);
-		move_stack(push->stack_a, push->size_a, 1);
-		push->stack_a[0] = push->stack_b[0];
-		move_stack(push->stack_b, push->size_b, 0);
-		push->size_b--;
-		push->size_a++;
-	}
+	*stack = tmp;
+
+
+
+	ft_putstr("stack aft:\t");
+	ft_putnbr(*(int*)(*stack)->content);
+	ft_putendl("");
+	//while (--i)
+		ft_wait_pls(0);
+//	*stack = tmp;
 	return (1);
 }
 
-int		execute_rotation(int *stack, size_t size, int reverse)
+int		execute_swap(t_tab **stack)
 {
-	int		swap;
-	size_t	i;
-
-	if (size < 2)
+	if (ft_tabloop_lendir(*stack, 0) < 2)
 		return (0);
-	if (!reverse)
+	ft_tabadd_start(stack, ft_tab_cutone((*stack)->dir[0]), 0);
+	ft_tab_connect_structs(*stack, (*stack)->dir[0], 0);
+	return (1);
+}
+
+int		execute_push(t_tab **stack_a, t_tab **stack_b)
+{
+	ft_putendl(__func__);
+	if (!stack_a || !*stack_a)
+		return (0);
+	ft_putstr("1\n");
+	if (ft_tabloop_lendir(*stack_a, 0) < 2)
 	{
-		i = 0;
-		swap = stack[0];
-		while (++i < size)
-			stack[i - 1] = stack[i];
-		stack[i - 1] = swap;
+		ft_putstr("1if\n");
+		ft_tabadd_start(stack_b, *stack_a, 0);
+		*stack_a = NULL;
 	}
 	else
 	{
-		i = size;
-		swap = stack[size - 1];
-		while (--i >= 1)
-			stack[i] = stack[i - 1];
-		stack[0] = swap;
+		ft_putstr("1else\n");
+		if (!stack_b)
+			stack_b = cnalloc(NULL, sizeof(t_tab*));
+		ft_putstr("2if\n");
+		execute_rotation(stack_a, 2);
+		ft_putstr("2rot\n");
+		ft_tabadd_start(stack_b, ft_tab_cutone((*stack_a)->dir[2]), 0);
+		ft_putstr("2addstart\n");
 	}
+	ft_putstr("end\n");
+	ft_wait_pls(0);
+	ft_wait_pls(0);
 	return (1);
 }
 
@@ -109,18 +96,18 @@ int		execute_double(t_push_swap *push, int mode)
 	r_val =0;
 	if (mode == 0)
 	{
-		r_val += execute_swap(push->stack_a, push->size_a);
-		r_val += execute_swap(push->stack_b, push->size_b);
+		r_val += execute_swap(&push->stack_a);
+		r_val += execute_swap(&push->stack_b);
 	}
 	if (mode == 1)
 	{
-		r_val += execute_rotation(push->stack_a, push->size_a, 0);
-		r_val += execute_rotation(push->stack_b, push->size_b, 0);
+		r_val += execute_rotation(&push->stack_a, 0);
+		r_val += execute_rotation(&push->stack_b, 0);
 	}
 	if (mode == 2)
 	{
-		r_val += execute_rotation(push->stack_a, push->size_a, 1);
-		r_val += execute_rotation(push->stack_b, push->size_b, 1);
+		r_val += execute_rotation(&push->stack_a, 2);
+		r_val += execute_rotation(&push->stack_b, 2);
 	}
 	if (r_val != 2)
 		return (0);
@@ -130,28 +117,41 @@ int		execute_double(t_push_swap *push, int mode)
 int		execute_order_66(t_push_swap *push)
 {
 	if (!ft_strcmp(push->instruction, "sa"))
-		execute_swap(push->stack_a, push->size_a);
+		execute_swap(&push->stack_a);
 	else if (!ft_strcmp(push->instruction, "sb"))
-		execute_swap(push->stack_b, push->size_b);
+		execute_swap(&push->stack_b);
 	else if (!ft_strcmp(push->instruction, "ss"))
 		execute_double(push, 0);
 
 	else if (!ft_strcmp(push->instruction, "pa"))
-		execute_push(push, 0);
+	{
+		if (execute_push(&push->stack_a, &push->stack_b))
+		{
+			push->size_a--;
+			push->size_b++;
+		}
+	}
 	else if (!ft_strcmp(push->instruction, "pb"))
-		execute_push(push, 1);
+	{
+		if (execute_push(&push->stack_b, &push->stack_a))
+		{
+			push->size_a++;
+			push->size_b--;
+		}
+	}
 
 	else if (!ft_strcmp(push->instruction, "ra"))
-		execute_rotation(push->stack_a, push->size_a, 0);
+		push->stack_a = push->stack_a->dir[0];
+//		execute_rotation(&push->stack_a, 0);
 	else if (!ft_strcmp(push->instruction, "rb"))
-		execute_rotation(push->stack_b, push->size_b, 0);
+		execute_rotation(&push->stack_b, 0);
 	else if (!ft_strcmp(push->instruction, "rr"))
 		execute_double(push, 1);
 
 	else if (!ft_strcmp(push->instruction, "rra"))
-		execute_rotation(push->stack_a, push->size_a, 1);
+		execute_rotation(&(push->stack_a), 2);
 	else if (!ft_strcmp(push->instruction, "rrb"))
-		execute_rotation(push->stack_b, push->size_b, 1);
+		execute_rotation(&push->stack_b, 2);
 	else if (!ft_strcmp(push->instruction, "rrr"))
 		execute_double(push, 2);
 
