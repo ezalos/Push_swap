@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/03/05 19:14:22 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/03/07 15:20:36 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,7 +140,7 @@ endef
 
 all :	$(NAME)
 
-$(NAME): $(A_OBJ) $(HEAD_PATH)
+$(NAME): $(A_OBJ) $(HEAD_PATH) $(LIB)
 		@$(MAKE) -C $(LIB_DIR)
 		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(A_OBJ) $(LIB) -o $(NAME))
 
@@ -176,6 +176,7 @@ t	:	all
 
 echooo :
 		@echo $(ARG)
+
 vt	:	all
 		@ $(VALGRIND) ./$(NAME) $(ARG)
 
