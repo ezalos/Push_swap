@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/03/07 15:20:36 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/03/17 20:06:03 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = Push_swap
 CC = gcc
 
 CFLAGS = #-Wall -Wextra -Werror
+CFLAGS =
 
 DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 -O2 -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int\
@@ -140,12 +141,14 @@ endef
 
 all :	$(NAME)
 
-$(NAME): $(A_OBJ) $(HEAD_PATH) $(LIB)
-		@$(MAKE) -C $(LIB_DIR)
+$(NAME): $(A_OBJ) $(HEAD_PATH) $(LIB) Makefile
 		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(A_OBJ) $(LIB) -o $(NAME))
 
 $(DIR_OBJ)%.o:$(SRC_PATH)/%.c
 		@$(call run_and_test, $(CC) $(CFLAGS) -o $@ -c $<)
+
+$(LIB): FORCE
+		@$(MAKE) -C $(LIB_DIR)
 
 clean :
 		@echo "\$(YELLOW)fill_objs \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
@@ -179,6 +182,8 @@ echooo :
 
 vt	:	all
 		@ $(VALGRIND) ./$(NAME) $(ARG)
+
+FORCE:
 
 ##########################
 ##						##

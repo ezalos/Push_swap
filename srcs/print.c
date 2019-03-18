@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 15:27:51 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/05 20:32:05 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/18 13:04:28 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int			print_push_swap(t_push_swap *push)
 	//ft_putstr("BONJOUR PBM !");
 
 	in = 0;
-	dir = 2;
+	dir = 0;
 	while (in < push->all && (in < push->size_a || in < push->size_b))
 	{
 		ft_putstr("\n");
@@ -76,6 +76,7 @@ int			print_push_swap(t_push_swap *push)
 				C_CYAN
 			good_a = now_a;
 			ft_putnbr(good_a);
+			ft_putstr("   ");
 		}
 		ft_putstr("\t\t");
 		if (in < push->size_b)
@@ -94,6 +95,7 @@ int			print_push_swap(t_push_swap *push)
 				C_CYAN
 			good_b = now_b;
 			ft_putnbr(good_b);
+			ft_putstr("   ");
 		}
 		in++;
 	}
