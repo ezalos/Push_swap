@@ -6,14 +6,14 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 13:21:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/18 19:31:30 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/25 18:28:40 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEAD_H
 # define HEAD_H
 
-# include "../../libft/libft.h"
+# include "../../libft/includes/libft.h"
 
 typedef struct		s_push_swap
 {

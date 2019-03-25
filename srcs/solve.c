@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 19:27:41 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/18 20:39:55 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:07:51 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,56 +36,85 @@ int		get_tabint_inint(t_tab *tab, size_t dir, int *array)
 int		sort_mine_increasing(int *array, int size)
 {
 	int		i;
-	int		j;
-	int		swap;
 	int		save;
-	int		count;
+	int		swap;
 
-	i = -1;
+	save = 1;
 	swap = 0;
-	save = -1;
-	while (save != swap)
+	while (save)
 	{
-		save = swap;
-		i = 0;
-		j = 0;
+		save = 0;
+		i = -1;
 		while (++i < size)
-		{
-			if (array[j] > array[i])
+			if (array[i] < array[i - 1] && ++save)
 			{
-				ft_swap(&array[i], &array[j], sizeof(int));
-				j = i;
+				ft_swap(&array[i], &array[i - 1], sizeof(int));
 				swap++;
 			}
-		}
 	}
 	return (swap);
 }
 
-int		lets_solve(t_push_swap *push)
+int		get_solve_data(t_push_swap *push, int **solved)
 {
 	int		i;
-	int		*solved;
 
 	solved = ft_memalloc(sizeof(int) * (push->all + 1));
-	get_tabint_inint(push->stack_a, 0, solved);
+	get_tabint_inint(push->stack_a, 0, *solved);
 //	solved[0] = push->all;
 	i = -1;
 	while (++i < (int)push->all)
 	{
-		ft_putnbr(solved[i]);
+		ft_putnbr(*solved[i]);
 		if (i < (int)push->all - 1)
 			ft_putstr("|");
 	}
 	ft_putendl("");
+	ft_putnbr(sort_mine_increasing(*solved, (int)push->all));
 	ft_putendl("");
-	sort_mine_increasing(solved, (int)push->all);
 	i = -1;
 	while (++i < (int)push->all)
 	{
-		ft_putnbr(solved[i]);
+		ft_putnbr(*solved[i]);
 		if (i < (int)push->all - 1)
 			ft_putstr("|");
+	}
+	ft_putendl("");
+	return (0);
+}
+
+int		lets_polve(t_push_swap *push)
+{
+	if (!(execute_order_66(push)))
+		return (-1);
+	print_push_swap(push);
+	ft_strdel(&push->instruction);
+	push->count++;
+	return (push->count);
+}
+
+int		lets_solve(t_push_swap *push)
+{
+	static int		*solved;
+	t_tab			*tmp;
+	int				now;
+
+	if (!solved)
+		get_solve_data(push, &solved);
+	tmp = push->stack_a;
+	while (tmp)
+	{
+		now = *(int*)tmp->content;
+		if (now < solved[push->all / 2])
+		{
+			push->instruction = ft_strdup("pa");
+		}
+		else
+			push->instruction = ft_strdup("ra");
+		lets_polve(push);
+		ft_wait_pls(0);
+		ft_wait_pls(0);
+		ft_wait_pls(0);
 	}
 	return (0);
 }
