@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 19:27:41 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/26 16:58:44 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/27 22:03:09 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,15 @@ int		print_int_tab(int *solved, int size)
 	i = -1;
 	while (++i < size)
 	{
+		if (i)
+		{
+			if ((solved)[i - 1] < (solved)[i])
+				C_GREEN
+			else
+				C_RED
+		}
 		ft_putnbr((solved)[i]);
+		C_RESET
 		if (i < size - 1)
 			ft_putstr("|");
 	}
@@ -70,15 +78,66 @@ int		print_int_tab(int *solved, int size)
 	return (0);
 }
 
+int		*my_size(void)
+{
+	static int	mem;
+
+	return (&mem);
+}
+
+void	ft_print_qs(int **array, int pivot, int look_left, int look_right)
+{
+	int		size;
+	int		i;
+
+	size = *my_size();
+	i = -1;
+	while (++i <= size)
+	{
+		if ((*array)[i] == pivot)
+			C_CYAN
+		else if (i == look_left)
+			C_GREEN
+		else if (i == look_right)
+			C_RED
+		else if (look_left < i && i < look_right)
+			C_YELLOW
+		ft_putnbr((*array)[i]);
+		C_RESET
+		if (i < size)
+			ft_putstr("|");
+	}
+	ft_putendl("");
+}
+
 int		get_solve_data(t_push_swap *push, int **solved)
 {
+	char *line;
+	int *quick;
+	int *squick;
+	int	count;
 
+	*my_size() = push->all - 1;
 	*solved = ft_memalloc(sizeof(int) * (push->all + 1));
 	get_tabint_inint(push->stack_a, 0, *solved);
 	print_int_tab(*solved, (int)push->all);
 	ft_putnbr(sort_mine_increasing(*solved, (int)push->all));
 	ft_putendl("");
+	ft_putendl("\nBubble sort :");
 	print_int_tab(*solved, (int)push->all);
+	quick = ft_memalloc(sizeof(int) * (push->all + 1));
+	get_tabint_inint(push->stack_a, 0, quick);
+	ft_quick_sort(&quick, 0, push->all - 1, &count);
+	ft_putendl("\nQuick sort :");
+	print_int_tab(quick, (int)push->all);
+	ft_putnbr(count);
+	squick = ft_memalloc(sizeof(int) * (push->all + 1));
+	get_tabint_inint(push->stack_a, 0, squick);
+	ft_putendl("");
+	ft_squick_sort(&squick, 0, push->all - 1);
+	ft_putendl("\nSQuick sort :");
+	print_int_tab(squick, (int)push->all);
+	get_next_line(0, &line);
 	return (0);
 }
 
@@ -132,7 +191,6 @@ int		is_it_order(t_push_swap *push)
 
 int		order_one_stack(t_push_swap *push, int *solved)
 {
-	char			*nul;
 	int				now;
 	int				next;
 
@@ -140,7 +198,6 @@ int		order_one_stack(t_push_swap *push, int *solved)
 	{
 		now = *(int*)push->stack_a->content;
 		next = *(int*)push->stack_a->dir[0]->content;
-		ft_printf("now: %d\t%d :nxt\t", now, next);
 		if (now == solved[push->size_b])
 			push->instruction = ft_strdup("pa");
 		else if (next == solved[push->size_b])
@@ -150,19 +207,13 @@ int		order_one_stack(t_push_swap *push, int *solved)
 			push->instruction = ft_strdup("pa");
 		}
 		else if (now > next)
-		{
 			push->instruction = ft_strdup("sa");
-		}
 		else
-		{
 			push->instruction = ft_strdup("rra");
-		}
-		get_next_line(0, &nul);
 		lets_polve(push);
 	}
 	while (push->size_b)
 	{
-		get_next_line(0, &nul);
 		push->instruction = ft_strdup("pb");
 		lets_polve(push);
 	}
