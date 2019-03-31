@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 15:27:51 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/25 18:29:00 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/30 23:25:02 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,20 @@ int			print_push_swap(t_push_swap *push)
 	C_PINK
 	ft_putstr(push->instruction);
 	C_YELLOW
-	ft_putstr("\n");
+	ft_putstr("  \n");
 	ft_putstr("Size total: ");
 	C_BROWN
 	ft_putnbr(push->all);
 	C_YELLOW
-	ft_putstr("\tSize A: ");
+	ft_putstr("  \tSize A: ");
 	C_BROWN
 	ft_putnbr(push->size_a);
 	C_YELLOW
-	ft_putstr("\tSize B: ");
+	ft_putstr("  \tSize B: ");
 	C_BROWN
 	ft_putnbr(push->size_b);
 	C_RESET
-	ft_putstr("\n");
+	ft_putstr("  \n");
 	//ft_putstr("BONJOUR PBM ?");
 	tmpa = (push->stack_a);
 	tmpb = (push->stack_b);
@@ -56,7 +56,7 @@ int			print_push_swap(t_push_swap *push)
 
 	in = 0;
 	dir = 0;
-	while (in < push->all && (in < push->size_a || in < push->size_b))
+	while (in < push->all || (in < push->size_a || in < push->size_b))
 	{
 		ft_putstr("\n");
 		ft_putstr("\t\t\t");
@@ -78,13 +78,17 @@ int			print_push_swap(t_push_swap *push)
 			ft_putnbr(good_a);
 			ft_putstr("   ");
 		}
+		else
+		{
+			ft_putstr("   ");
+		}
 		ft_putstr("\t\t");
 		if (in < push->size_b)
 		{
 			now_b = *(int*)ft_tab_dirth(push->stack_b, dir, in)->content;
 			if (in > 0)
 			{
-				if (now_b > good_b)
+				if (now_b < good_b)
 					C_GREEN
 				else if (now_b == good_b)
 					C_ORANGE
@@ -95,6 +99,10 @@ int			print_push_swap(t_push_swap *push)
 				C_CYAN
 			good_b = now_b;
 			ft_putnbr(good_b);
+			ft_putstr("   ");
+		}
+		else
+		{
 			ft_putstr("   ");
 		}
 		in++;

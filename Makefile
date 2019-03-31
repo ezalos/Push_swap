@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/03/18 19:32:09 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/03/31 00:45:29 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,13 @@ SRCS		=	main\
 				push_swap\
 				check\
 				solve\
+				tab\
+				action\
+				not_smart\
+				tools\
+				recursive\
+				debug\
+				bubble_it\
 				print
 
 SRC_PATH	= ./srcs

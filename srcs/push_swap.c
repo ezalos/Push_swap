@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 15:25:41 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/27 14:50:54 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/31 01:54:51 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,8 @@ int		execute_order_66(t_push_swap *push)
 {
 	if (push->instruction[0] == ' ')
 		ft_memmove(push->instruction, &push->instruction[1], ft_strlen(push->instruction));
-	else
-		CLEAR_SCREEN
+	// else
+	// 	CLEAR_SCREEN
 	if (!ft_strcmp(push->instruction, "sa"))
 		execute_swap(&push->stack_a);
 	else if (!ft_strcmp(push->instruction, "sb"))
@@ -162,12 +162,17 @@ int		execute_order_66(t_push_swap *push)
 		lets_solve(push);
 		return (1);
 	}
+	// print_push_swap(push);
 	return(1);
 }
 
 int		lets_play(t_push_swap *push)
 {
 	print_push_swap(push);
+	// ft_wait_pls(0);
+	// ft_wait_pls(0);
+	// ft_wait_pls(0);
+	lets_solve(push);
 	if (0 >= get_next_line(0, &push->instruction))
 		return (-1);
 	while (push->instruction[0] != '\0')

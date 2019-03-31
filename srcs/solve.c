@@ -6,229 +6,96 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 19:27:41 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/27 22:03:09 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/31 03:07:41 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/head.h"
-#include <stdio.h>
 
-int		get_tabint_inint(t_tab *tab, size_t dir, int *array)
+int		do_it_yourself(void)
 {
-	t_tab	*ptr;
-	int		lin;
+	t_push_swap		*push;
+	char			*line;
+	int				nb;
 
-	if (tab != NULL)
-	{
-		ptr = tab;
-		lin = 0;
-		while (ptr && (ptr != tab || !lin))
-		{
-			//printf("%p->%d", ptr, *(int*)ptr->content);
-			array[lin] = *(int*)ptr->content;
-			ptr = ptr->dir[dir];
-			lin++;
-		}
-	}
-	return (0);
-}
-
-int		sort_mine_increasing(int *array, int size)
-{
-	int		i;
-	int		save;
-	int		swap;
-
-	save = 1;
-	swap = 0;
-	while (save)
-	{
-		save = 0;
-		i = -1;
-		while (++i < size)
-			if (array[i] < array[i - 1] && ++save)
-			{
-				ft_swap(&array[i], &array[i - 1], sizeof(int));
-				swap++;
-			}
-	}
-	return (swap);
-}
-
-int		print_int_tab(int *solved, int size)
-{
-	int		i;
-
-	i = -1;
-	while (++i < size)
-	{
-		if (i)
-		{
-			if ((solved)[i - 1] < (solved)[i])
-				C_GREEN
-			else
-				C_RED
-		}
-		ft_putnbr((solved)[i]);
-		C_RESET
-		if (i < size - 1)
-			ft_putstr("|");
-	}
-	ft_putendl("");
-	return (0);
-}
-
-int		*my_size(void)
-{
-	static int	mem;
-
-	return (&mem);
-}
-
-void	ft_print_qs(int **array, int pivot, int look_left, int look_right)
-{
-	int		size;
-	int		i;
-
-	size = *my_size();
-	i = -1;
-	while (++i <= size)
-	{
-		if ((*array)[i] == pivot)
-			C_CYAN
-		else if (i == look_left)
-			C_GREEN
-		else if (i == look_right)
-			C_RED
-		else if (look_left < i && i < look_right)
-			C_YELLOW
-		ft_putnbr((*array)[i]);
-		C_RESET
-		if (i < size)
-			ft_putstr("|");
-	}
-	ft_putendl("");
-}
-
-int		get_solve_data(t_push_swap *push, int **solved)
-{
-	char *line;
-	int *quick;
-	int *squick;
-	int	count;
-
-	*my_size() = push->all - 1;
-	*solved = ft_memalloc(sizeof(int) * (push->all + 1));
-	get_tabint_inint(push->stack_a, 0, *solved);
-	print_int_tab(*solved, (int)push->all);
-	ft_putnbr(sort_mine_increasing(*solved, (int)push->all));
-	ft_putendl("");
-	ft_putendl("\nBubble sort :");
-	print_int_tab(*solved, (int)push->all);
-	quick = ft_memalloc(sizeof(int) * (push->all + 1));
-	get_tabint_inint(push->stack_a, 0, quick);
-	ft_quick_sort(&quick, 0, push->all - 1, &count);
-	ft_putendl("\nQuick sort :");
-	print_int_tab(quick, (int)push->all);
-	ft_putnbr(count);
-	squick = ft_memalloc(sizeof(int) * (push->all + 1));
-	get_tabint_inint(push->stack_a, 0, squick);
-	ft_putendl("");
-	ft_squick_sort(&squick, 0, push->all - 1);
-	ft_putendl("\nSQuick sort :");
-	print_int_tab(squick, (int)push->all);
-	get_next_line(0, &line);
-	return (0);
-}
-
-int		lets_polve(t_push_swap *push)
-{
-	if (!(execute_order_66(push)))
-		return (-1);
+	push = *ft_remember_push();
 	print_push_swap(push);
-	ft_strdel(&push->instruction);
-	push->count++;
+	ft_putstr("exe:");
+	if (0 >= get_next_line(0, &line))
+		return (-1);
+	while (line[0] != '\0')
+	{
+		if (line[1] != '\0')
+			nb = ft_atoi(line + 1);
+		else
+			if (line[0] == 'a')
+				nb = push->size_a;
+			else
+				nb = push->size_b;
+		ft_printf("  %d   ", nb);
+		if (line[0] == 'a')
+			ab(nb);
+		else
+			ba(nb);
+		print_push_swap(push);
+		ft_strdel(&line);
+		ft_putstr("exe:");
+		if (0 >= get_next_line(0, &line))
+			return (-1);
+	}
+	if (push->size_b == 1)
+		pb();
 	return (push->count);
 }
 
-int		split_pusha(t_push_swap *push, int *solved)
+void		print_menu(void)
 {
-	int				now;
-
-	while (((push->size_b <= push->size_a - 2) && push->all % 2)
-	|| ((push->size_b <= push->size_a - 1 ) && !(push->all % 2)))
-	{
-		now = *(int*)push->stack_a->content;
-		ft_printf("now: %d\t%d :ref\t", now, solved[push->all / 2]);
-		if (now < solved[push->all / 2])
-		{
-			push->instruction = ft_strdup("pa");
-		}
-		else
-			push->instruction = ft_strdup("ra");
-		// scanf("%d\n", &now);
-		lets_polve(push);
-	}
-	return (1);
+	C_ORANGE
+	ft_putstr("\t0  : BUBBLE\n");
+	ft_putstr("\t1  : WRITE\n");
+	ft_putstr("\t2  : MARLEY\n");
+	ft_putstr("\t3  : DUMB\n");
+	ft_putstr("\t4  : THINK\n");
+	C_BLUE
+	ft_putstr("\tPlease enter your selection :\t");
+	C_RESET
 }
 
-int		is_it_order(t_push_swap *push)
+int		choose_solve(void)
 {
-	int			i;
-	int			actual;
-	int			save;
+	char *instructions;
+	int choice;
+	t_push_swap		*push;
 
-	i = -1;
-	while (++i < (int)push->size_a)
-	{
-		actual = *(int*)ft_tab_dirth(push->stack_a, 0, i)->content;
-		if (i && save > actual)
-			return (0);
-		save = actual;
-	}
-	return (1);
-}
-
-int		order_one_stack(t_push_swap *push, int *solved)
-{
-	int				now;
-	int				next;
-
-	while (push->size_a > 1 && !is_it_order(push))
-	{
-		now = *(int*)push->stack_a->content;
-		next = *(int*)push->stack_a->dir[0]->content;
-		if (now == solved[push->size_b])
-			push->instruction = ft_strdup("pa");
-		else if (next == solved[push->size_b])
-		{
-			push->instruction = ft_strdup("sa");
-			lets_polve(push);
-			push->instruction = ft_strdup("pa");
-		}
-		else if (now > next)
-			push->instruction = ft_strdup("sa");
-		else
-			push->instruction = ft_strdup("rra");
-		lets_polve(push);
-	}
-	while (push->size_b)
-	{
-		push->instruction = ft_strdup("pb");
-		lets_polve(push);
-	}
+	push = (*ft_remember_push());
+	print_menu();
+	C_CYAN
+	if (-1 == get_next_line(0, &instructions))
+		return (-1);
+	C_RESET
+	CLEAR_SCREEN
+	choice = 1;
+	choice = ft_atoi(instructions);
+	if (choice == 0)
+		bubble_it();//work
+	else if (choice == 1)
+		do_it_yourself();//work
+	else if (choice == 2)
+		algo_tro_bo1(push);
+	else if (choice == 3)
+		not_smart();
+	else if (choice == 4)
+		algo_tro_bo2(push);
+	ft_strdel(&instructions);
+	print_push_swap(push);
 	return (0);
 }
 
 int		lets_solve(t_push_swap *push)
 {
-	static int		*solved;
-	t_tab			*tmp;
+	// char			*line;
 
-	if (!solved)
-		get_solve_data(push, &solved);
-	tmp = push->stack_a;
-	order_one_stack(push, solved);
-	// split_pusha(push, solved);
-	return (0);
+	*ft_remember_push() = push;
+	choose_solve();
+	return (push->count);
 }
