@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/03/31 00:45:29 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/04/03 21:26:08 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRCS		=	main\
 				recursive\
 				debug\
 				bubble_it\
+				the_choosen_alg\
 				print
 
 SRC_PATH	= ./srcs
@@ -184,6 +185,41 @@ git :
 
 t	:	all
 		@./$(NAME) $(ARG)
+
+ten :
+		@./$(NAME) $(ARG)
+		@./$(NAME) $(ARG)
+		@./$(NAME) $(ARG)
+		@./$(NAME) $(ARG)
+		@./$(NAME) $(ARG)
+		@./$(NAME) $(ARG)
+		@./$(NAME) $(ARG)
+		@./$(NAME) $(ARG)
+		@./$(NAME) $(ARG)
+		@./$(NAME) $(ARG)
+
+hund :	all
+		@$(MAKE) ten
+		@$(MAKE) ten
+		@$(MAKE) ten
+		@$(MAKE) ten
+		@$(MAKE) ten
+		@$(MAKE) ten
+		@$(MAKE) ten
+		@$(MAKE) ten
+		@$(MAKE) ten
+		@$(MAKE) ten
+tho :
+		@$(MAKE) hund
+		@$(MAKE) hund
+		@$(MAKE) hund
+		@$(MAKE) hund
+		@$(MAKE) hund
+		@$(MAKE) hund
+		@$(MAKE) hund
+		@$(MAKE) hund
+		@$(MAKE) hund
+		@$(MAKE) hund
 
 echooo :
 		@echo $(ARG)

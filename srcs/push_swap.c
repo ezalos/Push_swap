@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 15:25:41 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/31 01:54:51 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/03 19:06:48 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,23 +168,26 @@ int		execute_order_66(t_push_swap *push)
 
 int		lets_play(t_push_swap *push)
 {
+	*ft_remember_push() = push;
 	print_push_swap(push);
 	// ft_wait_pls(0);
 	// ft_wait_pls(0);
 	// ft_wait_pls(0);
 	lets_solve(push);
-	if (0 >= get_next_line(0, &push->instruction))
-		return (-1);
-	while (push->instruction[0] != '\0')
-	{
-		if (!(execute_order_66(push)))
-			return (-1);
-		push->count++;
-//		CLEAR_SCREEN
-		print_push_swap(push);
-		ft_strdel(&push->instruction);
-		if (0 >= get_next_line(0, &push->instruction))
-			return (-1);
-	}
+/*
+** 	if (0 >= get_next_line(0, &push->instruction))
+** 		return (-1);
+** 	while (push->instruction[0] != '\0')
+** 	{
+** 		if (!(execute_order_66(push)))
+** 			return (-1);
+** 		push->count++;
+** //		CLEAR_SCREEN
+** 		print_push_swap(push);
+** 		ft_strdel(&push->instruction);
+** 		if (0 >= get_next_line(0, &push->instruction))
+** 			return (-1);
+** 	}
+*/
 	return (push->count);
 }

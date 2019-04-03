@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 00:06:08 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/31 01:45:56 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/03 18:30:40 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	think(int size)
 	lest_print_recur3(size, 2);
 	ba(ft_power(2, size));
 	if (size == 1)
-	ba(ft_power(2, size - 1));
+		ba(ft_power(2, size - 1));
 	if (size - 1 > 0)
 		ban(size - 1);
 	// think(size - 1);
@@ -113,7 +113,7 @@ int		algo_tro_bo2(t_push_swap *push)
 
 	i = -1;
 	CURSOR_SAVE
-	while (1 < size / ft_power(2, ++i))
+	while (1 < size / ft_power(2, ++i) && !order_a(push->size_a))
 	{
 		lest_print_recur2(size / (2 * ft_power(2, i)));
 		ab(size / ft_power(2, i));

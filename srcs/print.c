@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 15:27:51 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/30 23:25:02 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/03 19:12:04 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,46 +23,27 @@ int			print_push_swap(t_push_swap *push)
 	t_tab	*tmpb;
 	size_t	dir;
 
-	//CLEAR_SCREEN
+	// CLEAR_SCREEN
 	ft_place_cursor(0, 0);
 	//CURSOR_RESET
-	C_PURPLE
-	ft_putstr("ACTUAL COUNT: ");
-	C_RESET
-	ft_putnbr(push->count);
-	C_PURPLE
-	ft_putstr("\t\tInstruction: ");
-	C_PINK
-	ft_putstr(push->instruction);
-	C_YELLOW
-	ft_putstr("  \n");
-	ft_putstr("Size total: ");
-	C_BROWN
-	ft_putnbr(push->all);
-	C_YELLOW
-	ft_putstr("  \tSize A: ");
-	C_BROWN
-	ft_putnbr(push->size_a);
-	C_YELLOW
-	ft_putstr("  \tSize B: ");
-	C_BROWN
-	ft_putnbr(push->size_b);
-	C_RESET
-	ft_putstr("  \n");
-	//ft_putstr("BONJOUR PBM ?");
+	ft_printf("%~{101;78;163}ACTUAL COUNT: %~{100;100;255}%-15d", push->count);
+	ft_printf("%~{220;50;150}Instruction: %~{239;100;100}%7s\n", push->instruction);
+	ft_printf("%~{255;255;0}Size total: %~{238;205;163}%-7d", push->all);
+	ft_printf("%~{255;255;0}Size A: %~{238;205;163}%-7d", push->size_a);
+	ft_printf("%~{255;255;0}Size B: %~{238;205;163}%-7d%~{}\n", push->size_b);
+	ft_printf("%50s", " ");
 	tmpa = (push->stack_a);
 	tmpb = (push->stack_b);
-	//ft_putstr("BONJOUR PBM !");
-
 	in = 0;
 	dir = 0;
 	while (in < push->all || (in < push->size_a || in < push->size_b))
 	{
-		ft_putstr("\n");
+		// if (in)
+			ft_putstr("\n");
 		ft_putstr("\t\t\t");
 		if (in < push->size_a)
 		{
-			now_a = *(int*)ft_tab_dirth(push->stack_a, dir, in)->content;
+			now_a = stack_a(in);
 			if (in > 0)
 			{
 				if (now_a > good_a)
@@ -85,7 +66,7 @@ int			print_push_swap(t_push_swap *push)
 		ft_putstr("\t\t");
 		if (in < push->size_b)
 		{
-			now_b = *(int*)ft_tab_dirth(push->stack_b, dir, in)->content;
+			now_b = stack_b(in);
 			if (in > 0)
 			{
 				if (now_b < good_b)

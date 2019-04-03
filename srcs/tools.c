@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 00:04:27 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/31 01:39:09 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/03 20:33:03 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int		ft_mv(t_push_swap *push, size_t size, int a)
 {
 	int 	i;
 	int 	done;
+	int		median;
 
 	if (!size)
 		return (0);
@@ -94,11 +95,15 @@ int		ft_mv(t_push_swap *push, size_t size, int a)
 	}
 	i = 0;
 	done = 0;
+	if (a)
+		median = median_a(size);
+	else
+		median = median_b(size);
 	while (i < (int)size && (i - done) < (int)size / 2)
 	{
 		if (a)
 		{
-			if (stack_a(0) <= median_a(size))
+			if (stack_a(0) <= median)
 				pa();
 			else
 			{
@@ -107,7 +112,7 @@ int		ft_mv(t_push_swap *push, size_t size, int a)
 			}
 		}
 		else
-			if (stack_b(0) > median_b(size))
+			if (stack_b(0) > median)
 				pb();
 			else
 			{
@@ -121,7 +126,7 @@ int		ft_mv(t_push_swap *push, size_t size, int a)
 			rra();
 		else
 			rrb();
-	print_push_swap(push);
+	// print_push_swap(push);
 	return (size / 2);
 }
 
@@ -145,6 +150,23 @@ int		ab(size_t size)
 {
 	int		r_v;
 
+	if (size == 0)
+		return (0);
+	if (size == 1)
+	{
+		pa();
+		return (1);
+	}
+	if (size == 2)
+	{
+		if (stack_a(0) >= stack_a(1))
+			sa();
+		pa();
+		if (stack_a(0) >= stack_a(1))
+			return (2);
+		else
+			return (1);
+	}
 	r_v = ft_mv(*ft_remember_push(), size, 1);
 	return (r_v);
 }
@@ -160,7 +182,7 @@ int		ba(size_t size)
 		pb();
 		return (1);
 	}
-	if (size ==2)
+	if (size == 2)
 	{
 		if (stack_b(0) < stack_b(1))
 			sb();
@@ -174,16 +196,4 @@ int		ba(size_t size)
 	return (r_v);
 }
 
-// char *line;
-// get_next_line(0, &line);
-// if (size > 2)
-// {
-// 	sav = size / 2;
-// 	onof = 1;
-// 	while (sav)
-// 	{
-// 		r_v += ft_mv(*ft_remember_push(), sav, onof);
-// 		sav /= 2;
 // 		onof = (onof) ? 0 : 1;
-// 	}
-// }

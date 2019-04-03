@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 19:27:41 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/31 03:07:41 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/03 21:09:29 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,13 @@ int		do_it_yourself(void)
 void		print_menu(void)
 {
 	C_ORANGE
+	ft_putendl("");
 	ft_putstr("\t0  : BUBBLE\n");
 	ft_putstr("\t1  : WRITE\n");
 	ft_putstr("\t2  : MARLEY\n");
 	ft_putstr("\t3  : DUMB\n");
 	ft_putstr("\t4  : THINK\n");
+	ft_putstr("\t5  : L'ELU\n");
 	C_BLUE
 	ft_putstr("\tPlease enter your selection :\t");
 	C_RESET
@@ -68,14 +70,15 @@ int		choose_solve(void)
 	t_push_swap		*push;
 
 	push = (*ft_remember_push());
-	print_menu();
+	// print_menu();
+	/*
 	C_CYAN
 	if (-1 == get_next_line(0, &instructions))
 		return (-1);
 	C_RESET
 	CLEAR_SCREEN
-	choice = 1;
 	choice = ft_atoi(instructions);
+//*/ 	choice = 5;
 	if (choice == 0)
 		bubble_it();//work
 	else if (choice == 1)
@@ -86,6 +89,8 @@ int		choose_solve(void)
 		not_smart();
 	else if (choice == 4)
 		algo_tro_bo2(push);
+	else if (choice == 5)
+		the_choosen_alg(push);
 	ft_strdel(&instructions);
 	print_push_swap(push);
 	return (0);
