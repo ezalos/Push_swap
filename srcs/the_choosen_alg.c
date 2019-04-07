@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 18:32:01 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/07 13:21:57 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/07 16:09:18 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void			lets_see(int mode, int size)
 {
-	// return ;
+	return ;
 	print_push_swap((*ft_remember_push()));
 	return ;
 	if (mode == 0)

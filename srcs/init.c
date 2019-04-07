@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 13:56:40 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/03 19:12:31 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/07 16:08:08 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_push_swap	*setup_tab(int ac, char **av)
 	push = (t_push_swap*)cnalloc(NULL, sizeof(t_push_swap));
 	push->all = ac;
 	push->size_a = push->all;
-	push->stack_b = ft_tabnew_ptr(cnalloc(NULL, sizeof(t_tab)), sizeof(t_tab*));
+	push->stack_b = NULL;//ft_tabnew_ptr(cnalloc(NULL, sizeof(t_tab)), sizeof(t_tab*));
 	i = -1;
 	while (++i < ac)
 	{

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 00:04:27 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/07 11:57:52 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/07 13:27:59 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,81 +94,6 @@ int		median_a(size_t size)
 int		median_b(size_t size)
 {
 	return (ft_get_median((*ft_remember_push())->stack_b, size));
-}
-
-int		ft_mv(t_push_swap *push, size_t size, int a)
-{
-	int 	i;
-	int 	done;
-	int		median;
-
-	// ft_printf("SIZE= %d\n", size);
-	if (!size)
-		return (0);
-	if ((a && (size > push->size_a)) || (!a && (size > push->size_b)))
-	{
-		// if (a)
-		// 	while (size-- / 2)
-		// 		pa();
-		// else
-		// 	while (size-- / 2)
-		// 		pb();
-		return (0);
-	}
-	if (size == 1)
-	{
-		if (a)
-			pa();
-		else
-			pb();
-		return (1);
-	}
-	i = 0;
-	done = 0;
-	if (a)
-		median = median_a(size);
-	else
-		median = median_b(size);
-	// ft_printf("SIZE= %d\n", size);
-	// C_RESET
-	while (i < (int)size && (i - done) * 2 < (int)size)
-	{
-		if (a)
-		{
-			if (stack_a(0) <= median)
-			{
-				// C_GREEN
-				// ft_printf("%d\tMEDIAN : %d %d : VALUE\t", i, median, stack_a(0));
-				pa();
-			}
-			else
-			{
-				// C_RED
-				// ft_printf("%d\tMEDIAN : %d %d : VALUE\t", i, median, stack_a(0));
-				ra();
-				done++;
-			}
-			// C_RESET
-		}
-		else
-			if (stack_b(0) > median)
-				pb();
-			else
-			{
-				rb();
-				done++;
-			}
-		i++;
-		// ft_printf("%d<%d && %d<%d\n", i, size, (i - done) * 2, (int)size);
-	}
-	while (done--)
-		if (a)
-			rra();
-		else
-			rrb();
-	// print_push_swap(push);
-	// ft_putendl("                           ");
-	return (size / 2);
 }
 
 int			stack_a(int i)

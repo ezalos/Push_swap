@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 13:21:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/06 17:09:40 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/07 13:29:08 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int		order_a(int size);
 int		order_b(int size);
 int		ft_get_median(t_tab *stack, size_t size);
 int		ft_mv(t_push_swap *push, size_t size, int a);
+int		median_a(size_t size);
+int		median_b(size_t size);
 int			stack_a(int i);
 int			stack_b(int i);
 int		ab(size_t size);
