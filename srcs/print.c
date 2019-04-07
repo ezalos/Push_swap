@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 15:27:51 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/07 19:31:47 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/07 21:06:08 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int			print_push_swap(t_push_swap *push)
 	size_t	dir;
 
 	return (0);
-	// CLEAR_SCREEN
+	CLEAR_SCREEN
 	ft_place_cursor(0, 0);
 	//CURSOR_RESET
 	ft_printf("%~{101;78;163}ACTUAL COUNT: %~{100;100;255}%-15d", push->count);

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 00:04:27 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/07 13:27:59 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/07 21:03:51 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,23 +116,8 @@ int		ab(size_t size)
 {
 	int		r_v;
 
-	if (size == 0)
-		return (0);
-	if (size == 1)
-	{
-		pa();
-		return (1);
-	}
-	if (size == 2)
-	{
-		if (stack_a(0) >= stack_a(1))
-			sa();
-		pa();
-		// if (stack_a(0) >= stack_a(1))
-		// 	return (2);
-		// else
-			return (1);
-	}
+	if (size <= 3)
+		return (perfect_ab(size));
 	r_v = ft_mv(*ft_remember_push(), size, 1);
 	return (r_v);
 }

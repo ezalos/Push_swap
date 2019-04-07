@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 13:21:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/07 13:29:08 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/07 19:58:39 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int			execute_order_66(t_push_swap *push);
 
 int			get_solve_data(t_push_swap *push, int **solved);
 
+int 	perfect_ab(size_t size);
 
 int		order_a(int size);
 int		order_b(int size);

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 18:32:01 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/07 16:09:18 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/07 20:29:17 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,7 @@ static void			lets_see(int mode, int size)
 		ft_printf("%~{?}BANAB OF (%d)\n\n\n", size);
 	if (mode >= 0)
 		ft_press_any_key();
-
 }
-
-/*
-** static void 		banab(int size, int start)
-** {
-** 	if (size < 0)
-** 		return ;
-** 	if (start)
-** 		ba(ft_power(2, size + 1));
-** 	if (!order_a(ft_power(2, size)))
-** 	{
-** 		ab(ft_power(2, size));
-** 		banab(size - 1, 0);
-** 	}
-** 	banab(size - 1, 1);
-** }
-*/
 
 void 		banab(int size, int start);
 
@@ -74,28 +57,19 @@ void 		banab(int size, int start)
 		else
 			ba(size);
 	}
-	// if (size % 2)
-	// 	size++;
 	size /= 2;
 	if (!order_a(size))
 	{
 		lets_see(2, size);
-		ab(size);
+		// ab(size);
+		if (-1 == ab(size))
+			return ;
 		opt = 1;
 		banab(size, 0);
 	}
 	if (opt)
 		banab(size, 1);
 }
-
-
-// static int	repeat(int size)
-// {
-// 	if (!(*ft_remember_push())->size_b)
-// 		return (size);
-// 	banab(size, 1);
-// 	return (repeat(size + 1));
-// }
 
 static int	repeat(void)
 {
@@ -109,7 +83,9 @@ static int	repeat(void)
 	if (!order_a(push->size_a))
 	{
 		lets_see(0, size);
-		ab(size);
+		// ab(size);
+		if (-1 == ab(size))
+			return (-1);
 		repeat();
 		lets_see(-2, size);
 		banab(size, 1);

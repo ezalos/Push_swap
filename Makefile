@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/04/07 19:34:13 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/04/07 19:58:27 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRCS		=	main\
 				debug\
 				bubble_it\
 				the_choosen_alg\
+				perfect_ab\
 				old_alg\
 				fresh\
 				median\
