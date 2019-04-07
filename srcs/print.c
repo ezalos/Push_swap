@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 15:27:51 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/03 19:12:04 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/07 11:52:19 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int			print_push_swap(t_push_swap *push)
 	t_tab	*tmpb;
 	size_t	dir;
 
+	// return (0);
 	// CLEAR_SCREEN
 	ft_place_cursor(0, 0);
 	//CURSOR_RESET
@@ -44,7 +45,16 @@ int			print_push_swap(t_push_swap *push)
 		if (in < push->size_a)
 		{
 			now_a = stack_a(in);
-			if (in > 0)
+			if (push->size_a == push->all)
+			{
+				if (now_a == (int)in)
+					C_GREEN
+				else if (now_a < (int)in)
+					C_YELLOW
+				else
+					C_RED
+			}
+			else if (in > 0)
 			{
 				if (now_a > good_a)
 					C_GREEN

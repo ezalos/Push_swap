@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/04/03 21:26:08 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/04/06 17:10:07 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,8 @@ SRCS		=	main\
 				debug\
 				bubble_it\
 				the_choosen_alg\
+				old_alg\
+				fresh\
 				print
 
 SRC_PATH	= ./srcs

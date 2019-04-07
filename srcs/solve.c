@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 19:27:41 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/03 21:09:29 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/06 17:14:46 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,10 @@ int		choose_solve(void)
 		algo_tro_bo2(push);
 	else if (choice == 5)
 		the_choosen_alg(push);
+	else if (choice == 6)
+		the_old_choosen_alg(push);
+	else if (choice == 7)
+		fresh_start(push);
 	ft_strdel(&instructions);
 	print_push_swap(push);
 	return (0);

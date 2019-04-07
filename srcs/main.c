@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 13:21:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/03 21:02:23 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/05 21:35:54 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		main(int ac, char **av)
 	if (!(push = setup_tab(size, av)))
 		return (ft_putstr_r0("Error\n"));
 	lets_play(push);
+	ft_printf("%d", push->count);
 	if (is_it_good(push))
 	{
 		fd = open("./tests/OK", O_RDWR);

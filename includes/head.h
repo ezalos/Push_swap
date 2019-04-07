@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 13:21:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/03 18:34:57 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/06 17:09:40 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void		ba1(void);
 
 
 int		the_choosen_alg(t_push_swap *push);
+int		the_old_choosen_alg(t_push_swap *push);
+int		fresh_start(t_push_swap *push);
 
 t_push_swap		**ft_remember_push(void);
 void			pa(void);
