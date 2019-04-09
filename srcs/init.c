@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 13:56:40 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/07 16:08:08 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/08 13:21:02 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ t_push_swap	*setup_tab(int ac, char **av)
 			sizeof(int)), sizeof(int*)), 0);
 	}
 	ft_tabloop_it(push->stack_a, 0);
+	*ft_remember_push() = push;
 	return (push);
 }

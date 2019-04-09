@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 13:21:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/07 19:58:39 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/09 20:06:31 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct		s_push_swap
 	size_t			size_a;
 	size_t			size_b;
 	int				count;
+	t_tab			*actions;
 }					t_push_swap;
 
 t_push_swap	*setup_tab(int ac, char **av);
@@ -55,6 +56,7 @@ int			stack_a(int i);
 int			stack_b(int i);
 int		ab(size_t size);
 int		ba(size_t size);
+void    show_it(void);
 
 
 void		ba5(void);
@@ -63,6 +65,7 @@ void		ba3(void);
 void		ba2(void);
 void		ba1(void);
 
+int		add_action(char *str);
 
 int		the_choosen_alg(t_push_swap *push);
 int		the_old_choosen_alg(t_push_swap *push);

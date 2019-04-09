@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 15:27:51 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/07 21:06:08 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/08 17:23:20 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int			print_push_swap(t_push_swap *push)
 		ft_putstr("\t\t\t");
 		if (in < push->size_a)
 		{
-			now_a = stack_a(in) - 1;
+			now_a = stack_a(in);
 			if (push->size_a == push->all)
 			{
 				if (now_a == (int)in)

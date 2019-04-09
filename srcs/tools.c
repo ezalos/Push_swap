@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 00:04:27 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/07 21:03:51 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/08 11:35:20 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int		ab(size_t size)
 {
 	int		r_v;
 
-	if (size <= 3)
+	if (size <= 4)
 		return (perfect_ab(size));
 	r_v = ft_mv(*ft_remember_push(), size, 1);
 	return (r_v);
