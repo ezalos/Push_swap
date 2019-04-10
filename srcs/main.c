@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 13:21:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/04/09 20:40:43 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/04/10 14:33:25 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,11 @@ int		main(int ac, char **av)
 	if (!(push = setup_tab(size, av)))
 		return (ft_putstr_r0("Error\n"));
 	lets_play(push);
-	action_list();
-	ft_printf("%d\n", push->count);
+	// action_list();
+	// ft_printf("%d\n", push->count);
+	traduction();
+	// action_list();
+	// ft_printf("%d\n", push->count);
 	if (is_it_good(push))
 	{
 		nb = ft_nb_to_a(push->all, 0);
